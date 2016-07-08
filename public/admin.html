@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app='x-admin'>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+    <script src="javascripts/admin.js"></script>
+	<meta charset="UTF-8">
+	<title>管理系统</title>
+	<link rel = 'stylesheet' href="/stylesheets/admin.css">
+</head>
+<body>
+	<div class = 'x-view-full' ng-controller = 'x-controller'>
+		<div  class = 'x-project-header'>
+			        <div id = "x-project-title">管理后台</div>
+			<div id = "x-login-user">
+				<a href="/user/ttt">{{currentUser}}</a>&nbsp;<a href="/logout">退出</a>
+			</div>
+		</div>
+		<div class = "x-sidemenu">
+			<div class = "x-sidemenu-one" ng-repeat = "menu in menus" ng-show = "menu.enabled">
+				<p class = "sidemenu-one">{{menu.text}}</p>
+				<div class = "x-sidemenu-two" ng-repeat = "subMenu in menu.subMenus" ng-show = "subMenu.enabled">
+					<input type = "button" class = "sidemenu-button" value = "{{subMenu.text}}" ng-click = "setContent(subMenu.action)">
+					</input>
+				</div>
+			</div>			
+		</div>
+		<div class = "x-contents">
+			<div ng-include = "content"></div>
+		</div>
+	</div>
+</body>
+</html>
